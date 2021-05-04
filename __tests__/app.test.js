@@ -15,102 +15,102 @@ describe('API Routes', () => {
     return client.end();
   });
 
-  const expectedCats = [
+  const expectedBooks = [
     {
       id: expect.any(Number),
-      name: 'Felix',
-      type: 'Tuxedo',
-      url: 'cats/felix.png',
-      year: 1892,
-      lives: 3,
-      isSidekick: false
+      title: 'The Birth of Tragedy',
+      genre: 'philosophy as lit',
+      url: 'covers/BoT.jpg',
+      year: 1872,
+      pages: 160,
+      wasPublished: true
     },
     {
       id: expect.any(Number),
-      name: 'Garfield',
-      type: 'Orange Tabby',
-      url: 'cats/garfield.jpeg',
-      year: 1978,
-      lives: 7,
-      isSidekick: false
+      title: 'On Truth and Lies in a Nonmoral Sense',
+      genre: 'philosophy as lit',
+      url: 'covers/TaL.jpg',
+      year: 1873,
+      pages: 30,
+      wasPublished: false
     },
     {
       id: expect.any(Number),
-      name: 'Duchess',
-      type: 'Angora',
-      url: 'cats/duchess.jpeg',
-      year: 1970,
-      lives: 9,
-      isSidekick: false
+      title: 'Human, All too Human',
+      genre: 'philosophy as lit',
+      url: 'covers/HalT.webp',
+      year: 1878,
+      pages: 188,
+      wasPublished: true
     },
     {
       id: expect.any(Number),
-      name: 'Stimpy',
-      type: 'Manx',
-      url: 'cats/stimpy.jpeg',
-      year: 1990,
-      lives: 1,
-      isSidekick: true
+      title: 'The Gay Science',
+      genre: 'philosophy as lit',
+      url: 'covers/tGS.jpg',
+      year: 1882,
+      pages: 296,
+      wasPublished: true
     },
     {
       id: expect.any(Number),
-      name: 'Sylvester',
-      type: 'Tuxedo',
-      url: 'cats/sylvester.jpeg',
-      year: 1945,
-      lives: 1,
-      isSidekick: true
+      title: 'Thus Spake Zarathustra',
+      genre: 'philosophy as lit',
+      url: 'covers/thus.jpg',
+      year: 1883,
+      pages: 352,
+      wasPublished: true
     },
     {
       id: expect.any(Number),
-      name: 'Tigger',
-      type: 'Orange Tabby',
-      url: 'cats/tigger.jpeg',
-      year: 1928,
-      lives: 8,
-      isSidekick: false
+      title: 'Beyond Good and Evil',
+      genre: 'philosophy as lit',
+      url: 'covers/BGE.jpeg',
+      year: 1886,
+      pages: 288,
+      wasPublished: true
     },
     {
       id: expect.any(Number),
-      name: 'Hello Kitty',
-      type: 'Angora',
-      url: 'cats/hello-kitty.jpeg',
-      year: 1974,
-      lives: 9,
-      isSidekick: false
+      title: 'On The Geneology of Morality',
+      genre: 'philosophy as lit',
+      url: 'covers/GM.jpg',
+      year: 1887,
+      pages: 177,
+      wasPublished: true
     },
     {
       id: expect.any(Number),
-      name: 'Hobbs',
-      type: 'Orange Tabby',
-      url: 'cats/hobbs.jpeg',
-      year: 1985,
-      lives: 6,
-      isSidekick: true
+      title: 'Twilight of the Idols',
+      genre: 'philosophy as lit',
+      url: 'covers/TI.jpg',
+      year: 1888,
+      pages: 208,
+      wasPublished: true
     }
   ];
 
   // If a GET request is made to /api/cats, does:
   // 1) the server respond with status of 200
   // 2) the body match the expected API data?
-  it('GET /api/cats', async () => {
+  it('GET /api/books', async () => {
     // act - make the request
-    const response = await request.get('/api/cats');
+    const response = await request.get('/api/books');
 
     // was response OK (200)?
     expect(response.status).toBe(200);
 
     // did it return the data we expected?
-    expect(response.body).toEqual(expectedCats);
+    expect(response.body).toEqual(expectedBooks);
 
   });
 
   // If a GET request is made to /api/cats/:id, does:
   // 1) the server respond with status of 200
   // 2) the body match the expected API data for the cat with that id?
-  test('GET /api/cats/:id', async () => {
-    const response = await request.get('/api/cats/2');
+  test('GET /api/books/:id', async () => {
+    const response = await request.get('/api/books/3');
     expect(response.status).toBe(200);
-    expect(response.body).toEqual(expectedCats[1]);
+    expect(response.body).toEqual(expectedBooks[2]);
   });
 });
