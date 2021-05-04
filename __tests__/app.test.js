@@ -20,7 +20,7 @@ describe('API Routes', () => {
       id: expect.any(Number),
       title: 'The Birth of Tragedy',
       genre: 'philosophy as lit',
-      url: 'cats/felix.png',
+      url: 'covers/BoT.jpg',
       year: 1872,
       pages: 160,
       wasPublished: true
@@ -29,7 +29,7 @@ describe('API Routes', () => {
       id: expect.any(Number),
       title: 'On Truth and Lies in a Nonmoral Sense',
       genre: 'philosophy as lit',
-      url: 'cats/garfield.jpeg',
+      url: 'covers/TaL.jpg',
       year: 1873,
       pages: 30,
       wasPublished: false
@@ -38,7 +38,7 @@ describe('API Routes', () => {
       id: expect.any(Number),
       title: 'Human, All too Human',
       genre: 'philosophy as lit',
-      url: 'cats/duchess.jpeg',
+      url: 'covers/HalT.webp',
       year: 1878,
       pages: 188,
       wasPublished: true
@@ -47,7 +47,7 @@ describe('API Routes', () => {
       id: expect.any(Number),
       title: 'The Gay Science',
       genre: 'philosophy as lit',
-      url: 'cats/stimpy.jpeg',
+      url: 'covers/tGS.jpg',
       year: 1882,
       pages: 296,
       wasPublished: true
@@ -56,7 +56,7 @@ describe('API Routes', () => {
       id: expect.any(Number),
       title: 'Thus Spake Zarathustra',
       genre: 'philosophy as lit',
-      url: 'cats/sylvester.jpeg',
+      url: 'covers/thus.jpg',
       year: 1883,
       pages: 352,
       wasPublished: true
@@ -65,7 +65,7 @@ describe('API Routes', () => {
       id: expect.any(Number),
       title: 'Beyond Good and Evil',
       genre: 'philosophy as lit',
-      url: 'cats/tigger.jpeg',
+      url: 'covers/BGE.jpeg',
       year: 1886,
       pages: 288,
       wasPublished: true
@@ -74,7 +74,7 @@ describe('API Routes', () => {
       id: expect.any(Number),
       title: 'On The Geneology of Morality',
       genre: 'philosophy as lit',
-      url: 'cats/hello-kitty.jpeg',
+      url: 'covers/GM.jpg',
       year: 1887,
       pages: 177,
       wasPublished: true
@@ -83,7 +83,7 @@ describe('API Routes', () => {
       id: expect.any(Number),
       title: 'Twilight of the Idols',
       genre: 'philosophy as lit',
-      url: 'cats/hobbs.jpeg',
+      url: 'covers/TI.jpg',
       year: 1888,
       pages: 208,
       wasPublished: true
