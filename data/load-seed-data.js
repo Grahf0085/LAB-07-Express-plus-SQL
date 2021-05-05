@@ -14,8 +14,7 @@ async function run() {
         return client.query(`
           INSERT INTO books (title, genre, url, year, pages, was_published)
           VALUES ($1, $2, $3, $4, $5, $6);
-        `,
-          [book.title, book.genre, book.url, book.year, book.pages, book.wasPublished]);
+        `, [book.title, book.genre, book.url, book.year, book.pages, book.wasPublished]);
       })
     );
 
