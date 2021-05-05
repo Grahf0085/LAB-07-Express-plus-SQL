@@ -94,5 +94,11 @@ describe('API Routes', () => {
     expect(response.body).toEqual(expect.arrayContaining([H2H, morals, idols]));
   });
 
+  it('GET idols from /api/books/:id', async () => {
+    const response = await request.get(`/api/books/${idols.id}`);
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual(idols);
+  });
+
 });
 
