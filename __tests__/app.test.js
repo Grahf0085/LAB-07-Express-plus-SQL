@@ -59,27 +59,25 @@ describe('API Routes', () => {
     wasPublished: true
   };
 
-  it.only('POST H2H to /api/books', async () => {
+  it('POST H2H to /api/books', async () => {
     const response = await request
       .post('/api/books')
       .send(H2H);
-    console.log(response.text);
     expect(response.status).toBe(200);
     expect(response.body).toEqual(H2H);
 
     H2H = response.body;
   });
 
-
-  it('POST /api/books/H2H', async () => {
-    // act - make the request
-    const response = await request.post('/api/books/H2H');
-
-    // was response OK (200)?
+  it('PUT BGE to /api/books', async () => {
+    const response = await request
+      .post('/api/books')
+      .send(BGE);
     expect(response.status).toBe(200);
+    expect(response.body).toEqual(BGE);
 
-    // did it return the data we expected?
-    expect(response.body).toEqual(H2H);
-
+    H2H = response.body;
   });
+
 });
+
