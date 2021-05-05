@@ -82,15 +82,17 @@ describe('API Routes', () => {
     H2H = response.body;
   });
 
-  // it('POST morals and idols to /api/books', async () => {
-  //   const response = await request
-  //     .post('/api/books')
-  //     .send(H2H);
-  //   expect(response.status).toBe(200);
-  //   expect(response.body).toEqual(H2H);
+  it('GET list of books from /api/books', async () => {
+    const r1 = await request.post('/api/books').send(morals);
+    morals = r1.body;
+    const r2 = await request.post('/api/books').send(idols);
+    idols = r2.body;
 
-  //   H2H = response.body;
-  // });
+    const response = await request.get('/api/books');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual(expect.arrayContaining([H2H, morals, idols]));
+  });
 
 });
 
