@@ -69,15 +69,28 @@ describe('API Routes', () => {
     H2H = response.body;
   });
 
-  it('PUT BGE to /api/books', async () => {
+  it('PUT H2H to /api/books', async () => {
+
+    H2H.year = 1000;
+
     const response = await request
-      .post('/api/books')
-      .send(BGE);
+      .put(`/api/books/${H2H.id}`)
+      .send(H2H);
     expect(response.status).toBe(200);
-    expect(response.body).toEqual(BGE);
+    expect(response.body).toEqual(H2H);
 
     H2H = response.body;
   });
+
+  // it('POST morals and idols to /api/books', async () => {
+  //   const response = await request
+  //     .post('/api/books')
+  //     .send(H2H);
+  //   expect(response.status).toBe(200);
+  //   expect(response.body).toEqual(H2H);
+
+  //   H2H = response.body;
+  // });
 
 });
 
