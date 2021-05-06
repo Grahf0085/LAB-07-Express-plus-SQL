@@ -13,6 +13,18 @@ describe('API Routes', () => {
 
   beforeAll(() => {
     execSync('npm run recreate-tables');
+
+    const response = await request
+      .post('/api/auth/signup')
+      .send({
+        name: 'Me the user',
+        email: 'me@user.com',
+        passwordHash: 'password'
+      });
+
+    expect(response.status).toBe(200);
+
+    user = response.body;
   });
 
   afterAll(async () => {
