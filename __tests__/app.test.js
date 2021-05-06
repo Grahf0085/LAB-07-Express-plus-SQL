@@ -69,7 +69,7 @@ describe('API Routes', () => {
     H2H = response.body;
   });
 
-  it('PUT H2H to /api/books', async () => {
+  it.skip('PUT H2H to /api/books', async () => {
 
     H2H.year = 1000;
 
@@ -82,7 +82,7 @@ describe('API Routes', () => {
     H2H = response.body;
   });
 
-  it('GET list of books from /api/books', async () => {
+  it.skip('GET list of books from /api/books', async () => {
     const r1 = await request.post('/api/books').send(morals);
     morals = r1.body;
     const r2 = await request.post('/api/books').send(idols);
@@ -94,13 +94,13 @@ describe('API Routes', () => {
     expect(response.body).toEqual(expect.arrayContaining([H2H, morals, idols]));
   });
 
-  it('GET idols from /api/books/:id', async () => {
+  it.skip('GET idols from /api/books/:id', async () => {
     const response = await request.get(`/api/books/${idols.id}`);
     expect(response.status).toBe(200);
     expect(response.body).toEqual(idols);
   });
 
-  it('DELETE morals from /api/books/:id', async () => {
+  it.skip('DELETE morals from /api/books/:id', async () => {
     const response = await request.delete(`/api/books/${morals.id}`);
     expect(response.status).toBe(200);
     expect(response.body).toEqual(morals);
