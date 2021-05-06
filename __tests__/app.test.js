@@ -100,5 +100,15 @@ describe('API Routes', () => {
     expect(response.body).toEqual(idols);
   });
 
+  it('DELETE morals from /api/books/:id', async () => {
+    const response = await request.delete(`/api/books/${morals.id}`);
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual(morals);
+
+    const getResponse = await request.get('/api/books');
+    expect(getResponse.status).toBe(200);
+    expect(getResponse.body).toEqual(expect.arrayContaining([H2H, idols]));
+  });
+
 });
 
