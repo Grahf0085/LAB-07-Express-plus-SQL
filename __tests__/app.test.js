@@ -29,15 +29,15 @@ describe('API Routes', () => {
     wasPublished: true
   };
 
-  let BGE = {
-    id: expect.any(Number),
-    title: 'Beyond Good and Evil',
-    genre: 'philosophy as lit',
-    url: 'covers/BGE.jpeg',
-    year: 1886,
-    pages: 288,
-    wasPublished: true
-  };
+  // let BGE = {
+  //   id: expect.any(Number),
+  //   title: 'Beyond Good and Evil',
+  //   genre: 'philosophy as lit',
+  //   url: 'covers/BGE.jpeg',
+  //   year: 1886,
+  //   pages: 288,
+  //   wasPublished: true
+  // };
 
   let morals = {
     id: expect.any(Number),
