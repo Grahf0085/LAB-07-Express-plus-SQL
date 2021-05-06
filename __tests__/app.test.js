@@ -110,5 +110,33 @@ describe('API Routes', () => {
     expect(getResponse.body).toEqual(expect.arrayContaining([H2H, idols]));
   });
 
-});
 
+  describe('seed data tests', () => {
+
+    beforeAll(() => {
+      execSync('npm run setup-db');
+    });
+
+    it('GET /api/books', async () => {
+      // act - make the request
+      const response = await request.get('/api/books');
+
+      // was response OK (200)?
+      expect(response.status).toBe(200);
+
+      // did it return some data?
+      expect(response.body.length).toBeGreaterThan(0);
+
+      // did the data get inserted?
+      expect(response.body[0]).toEqual({
+        id: expect.any(Number),
+        title: expect.any(String),
+        genre: expect.any(String),
+        url: expect.any(String),
+        year: expect.any(Number),
+        pages: expect.any(Number),
+        wasPublished: expect.any(Boolean)
+      });
+    });
+  });
+});
