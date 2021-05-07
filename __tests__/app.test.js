@@ -10,9 +10,22 @@ describe('API Routes', () => {
   // beforeAll(() => {
   //   execSync('npm run setup-db');
   // });
+  let user;
 
-  beforeAll(() => {
+  beforeAll(async () => {
     execSync('npm run recreate-tables');
+
+    const response = await request
+      .post('/api/auth/signup')
+      .send({
+        name: 'Me the user',
+        email: 'me@user.com',
+        password: 'password'
+      });
+    expect(response.status).toBe(200);
+
+    user = response.body;
+
   });
 
   afterAll(async () => {
@@ -60,6 +73,7 @@ describe('API Routes', () => {
   };
 
   it('POST H2H to /api/books', async () => {
+    H2H.userId = user.id;
     const response = await request
       .post('/api/books')
       .send(H2H);
@@ -83,21 +97,32 @@ describe('API Routes', () => {
   });
 
   it('GET list of books from /api/books', async () => {
+
+    morals.userId = user.id;
     const r1 = await request.post('/api/books').send(morals);
     morals = r1.body;
+
+    idols.userId = user.id;
     const r2 = await request.post('/api/books').send(idols);
     idols = r2.body;
 
     const response = await request.get('/api/books');
 
     expect(response.status).toBe(200);
-    expect(response.body).toEqual(expect.arrayContaining([H2H, morals, idols]));
+    const expected = [H2H, morals, idols].map(book => {
+      return {
+        userName: user.name,
+        ...book
+      };
+    });
+
+    expect(response.body).toEqual(expect.arrayContaining(expected));
   });
 
   it('GET idols from /api/books/:id', async () => {
     const response = await request.get(`/api/books/${idols.id}`);
     expect(response.status).toBe(200);
-    expect(response.body).toEqual(idols);
+    expect(response.body).toEqual({ ...idols, userName: user.name });
   });
 
   it('DELETE morals from /api/books/:id', async () => {
@@ -107,8 +132,38 @@ describe('API Routes', () => {
 
     const getResponse = await request.get('/api/books');
     expect(getResponse.status).toBe(200);
-    expect(getResponse.body).toEqual(expect.arrayContaining([H2H, idols]));
+    expect(getResponse.body.find(book => book.id === morals.id)).toBeUndefined();
   });
 
-});
 
+  describe('seed data tests', () => {
+
+    beforeAll(() => {
+      execSync('npm run setup-db');
+    });
+
+    it('GET /api/books', async () => {
+      // act - make the request
+      const response = await request.get('/api/books');
+
+      // was response OK (200)?
+      expect(response.status).toBe(200);
+
+      // did it return some data?
+      expect(response.body.length).toBeGreaterThan(0);
+
+      // did the data get inserted?
+      expect(response.body[0]).toEqual({
+        id: expect.any(Number),
+        title: expect.any(String),
+        genre: expect.any(String),
+        url: expect.any(String),
+        year: expect.any(Number),
+        pages: expect.any(Number),
+        wasPublished: expect.any(Boolean),
+        userId: expect.any(Number),
+        userName: expect.any(String)
+      });
+    });
+  });
+});
