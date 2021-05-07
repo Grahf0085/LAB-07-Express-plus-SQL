@@ -25,7 +25,6 @@ describe('API Routes', () => {
     expect(response.status).toBe(200);
 
     user = response.body;
-    console.log(user);
 
   });
 
@@ -73,7 +72,7 @@ describe('API Routes', () => {
     wasPublished: true
   };
 
-  it('POST H2H to /api/books', async () => { 
+  it('POST H2H to /api/books', async () => {
     H2H.userId = user.id;
     const response = await request
       .post('/api/books')
@@ -85,7 +84,7 @@ describe('API Routes', () => {
   });
 
   it('PUT H2H to /api/books', async () => {
-    
+
     H2H.year = 1000;
 
     const response = await request
@@ -97,32 +96,43 @@ describe('API Routes', () => {
     H2H = response.body;
   });
 
-  it.skip('GET list of books from /api/books', async () => {
+  it('GET list of books from /api/books', async () => {
+
+    morals.userId = user.id;
     const r1 = await request.post('/api/books').send(morals);
     morals = r1.body;
+
+    idols.userId = user.id;
     const r2 = await request.post('/api/books').send(idols);
     idols = r2.body;
 
     const response = await request.get('/api/books');
 
     expect(response.status).toBe(200);
-    expect(response.body).toEqual(expect.arrayContaining([H2H, morals, idols]));
+    const expected = [H2H, morals, idols].map(book => {
+      return {
+        userName: user.name,
+        ...book
+      };
+    });
+
+    expect(response.body).toEqual(expect.arrayContaining(expected));
   });
 
-  it.skip('GET idols from /api/books/:id', async () => {
+  it('GET idols from /api/books/:id', async () => {
     const response = await request.get(`/api/books/${idols.id}`);
     expect(response.status).toBe(200);
-    expect(response.body).toEqual(idols);
+    expect(response.body).toEqual({ ...idols, userName: user.name });
   });
 
-  it.skip('DELETE morals from /api/books/:id', async () => {
+  it('DELETE morals from /api/books/:id', async () => {
     const response = await request.delete(`/api/books/${morals.id}`);
     expect(response.status).toBe(200);
     expect(response.body).toEqual(morals);
 
     const getResponse = await request.get('/api/books');
     expect(getResponse.status).toBe(200);
-    expect(getResponse.body).toEqual(expect.arrayContaining([H2H, idols]));
+    expect(getResponse.body.find(book => book.id === morals.id)).toBeUndefined();
   });
 
 
