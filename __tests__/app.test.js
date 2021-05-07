@@ -73,8 +73,7 @@ describe('API Routes', () => {
     wasPublished: true
   };
 
-  it.only('POST H2H to /api/books', async () => { 
-    console.log(user);
+  it('POST H2H to /api/books', async () => { 
     H2H.userId = user.id;
     const response = await request
       .post('/api/books')
@@ -85,8 +84,8 @@ describe('API Routes', () => {
     H2H = response.body;
   });
 
-  it.skip('PUT H2H to /api/books', async () => {
-
+  it('PUT H2H to /api/books', async () => {
+    
     H2H.year = 1000;
 
     const response = await request
