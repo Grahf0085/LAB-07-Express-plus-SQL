@@ -10,8 +10,9 @@ describe('API Routes', () => {
   // beforeAll(() => {
   //   execSync('npm run setup-db');
   // });
+  let user;
 
-  beforeAll(() => {
+  beforeAll(async () => {
     execSync('npm run recreate-tables');
 
     const response = await request
@@ -19,12 +20,13 @@ describe('API Routes', () => {
       .send({
         name: 'Me the user',
         email: 'me@user.com',
-        passwordHash: 'password'
+        password: 'password'
       });
-
     expect(response.status).toBe(200);
 
     user = response.body;
+    console.log(user);
+
   });
 
   afterAll(async () => {
@@ -71,7 +73,9 @@ describe('API Routes', () => {
     wasPublished: true
   };
 
-  it('POST H2H to /api/books', async () => {
+  it.only('POST H2H to /api/books', async () => { 
+    console.log(user);
+    H2H.userId = user.id;
     const response = await request
       .post('/api/books')
       .send(H2H);
@@ -123,32 +127,32 @@ describe('API Routes', () => {
   });
 
 
-  describe('seed data tests', () => {
+  // describe('seed data tests', () => {
 
-    beforeAll(() => {
-      execSync('npm run setup-db');
-    });
+  //   beforeAll(() => {
+  //     execSync('npm run setup-db');
+  //   });
 
-    it('GET /api/books', async () => {
-      // act - make the request
-      const response = await request.get('/api/books');
+  //   it('GET /api/books', async () => {
+  //     // act - make the request
+  //     const response = await request.get('/api/books');
 
-      // was response OK (200)?
-      expect(response.status).toBe(200);
+  //     // was response OK (200)?
+  //     expect(response.status).toBe(200);
 
-      // did it return some data?
-      expect(response.body.length).toBeGreaterThan(0);
+  //     // did it return some data?
+  //     expect(response.body.length).toBeGreaterThan(0);
 
-      // did the data get inserted?
-      expect(response.body[0]).toEqual({
-        id: expect.any(Number),
-        title: expect.any(String),
-        genre: expect.any(String),
-        url: expect.any(String),
-        year: expect.any(Number),
-        pages: expect.any(Number),
-        wasPublished: expect.any(Boolean)
-      });
-    });
-  });
+  //     // did the data get inserted?
+  //     expect(response.body[0]).toEqual({
+  //       id: expect.any(Number),
+  //       title: expect.any(String),
+  //       genre: expect.any(String),
+  //       url: expect.any(String),
+  //       year: expect.any(Number),
+  //       pages: expect.any(Number),
+  //       wasPublished: expect.any(Boolean)
+  //     });
+  //   });
+  // });
 });

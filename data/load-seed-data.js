@@ -14,7 +14,7 @@ async function run() {
       users.map(user => {
         return client.query(`
         INSERT INTO users(name, email, password_hash)
-        VALUES($1 $2 $3)
+        VALUES($1, $2, $3)
         RETURNING *;
         `, [user.name, user.email, user.password]);
       })
@@ -26,7 +26,7 @@ async function run() {
       books.map(book => {
         return client.query(`
           INSERT INTO books (title, genre, url, year, pages, was_published, user_id)
-          VALUES ($1, $2, $3, $4, $5, $6 $7);
+          VALUES ($1, $2, $3, $4, $5, $6, $7);
         `, [book.title, book.genre, book.url, book.year, book.pages, book.wasPublished, user.id]);
       })
     );
