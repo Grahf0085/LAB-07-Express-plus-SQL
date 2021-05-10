@@ -7,9 +7,6 @@ const request = supertest(app);
 
 describe('API Routes', () => {
 
-  // beforeAll(() => {
-  //   execSync('npm run setup-db');
-  // });
   let user;
 
   beforeAll(async () => {
@@ -23,7 +20,6 @@ describe('API Routes', () => {
         password: 'password'
       });
     expect(response.status).toBe(200);
-
     user = response.body;
 
   });
@@ -41,16 +37,6 @@ describe('API Routes', () => {
     pages: 188,
     wasPublished: true
   };
-
-  // let BGE = {
-  //   id: expect.any(Number),
-  //   title: 'Beyond Good and Evil',
-  //   genre: 'philosophy as lit',
-  //   url: 'covers/BGE.jpeg',
-  //   year: 1886,
-  //   pages: 288,
-  //   wasPublished: true
-  // };
 
   let morals = {
     id: expect.any(Number),
@@ -151,7 +137,6 @@ describe('API Routes', () => {
 
       // did it return some data?
       expect(response.body.length).toBeGreaterThan(0);
-
       // did the data get inserted?
       expect(response.body[0]).toEqual({
         id: expect.any(Number),
