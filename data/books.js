@@ -2,7 +2,7 @@
 const books = [
   {
     title: 'The Birth of Tragedy',
-    genre: 'philosophy as lit',
+    genre: 'historical fiction',
     url: '/covers/BoT.jpg',
     year: 1872,
     pages: 160,
@@ -10,7 +10,7 @@ const books = [
   },
   {
     title: 'On Truth and Lies in a Nonmoral Sense',
-    genre: 'philosophy as lit',
+    genre: 'short story',
     url: '/covers/TaL.jpg',
     year: 1873,
     pages: 30,
@@ -18,7 +18,7 @@ const books = [
   },
   {
     title: 'Human, All too Human',
-    genre: 'philosophy as lit',
+    genre: 'magical realism',
     url: '/covers/HalT.webp',
     year: 1878,
     pages: 188,
@@ -26,7 +26,7 @@ const books = [
   },
   {
     title: 'The Gay Science',
-    genre: 'philosophy as lit',
+    genre: 'self help',
     url: './covers/tGS.jpg',
     year: 1882,
     pages: 296,
@@ -34,7 +34,7 @@ const books = [
   },
   {
     title: 'Thus Spake Zarathustra',
-    genre: 'philosophy as lit',
+    genre: 'religous',
     url: './covers/thus.jpg',
     year: 1883,
     pages: 352,
@@ -42,7 +42,7 @@ const books = [
   },
   {
     title: 'Beyond Good and Evil',
-    genre: 'philosophy as lit',
+    genre: 'thriller',
     url: './covers/BGE.jpeg',
     year: 1886,
     pages: 288,
@@ -50,7 +50,7 @@ const books = [
   },
   {
     title: 'On The Geneology of Morality',
-    genre: 'philosophy as lit',
+    genre: 'polemic',
     url: './covers/GM.jpg',
     year: 1887,
     pages: 177,
@@ -58,7 +58,7 @@ const books = [
   },
   {
     title: 'Twilight of the Idols',
-    genre: 'philosophy as lit',
+    genre: 'true crime',
     url: './covers/TI.jpg',
     year: 1888,
     pages: 208,
